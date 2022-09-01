@@ -1,11 +1,22 @@
----
-title: Sign up
-layout: docs
-sitemap: false
-nav: hands_on
-toc: false
----
+app = "oXo-Fleet-Shard"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
 
-<%= partial "/docs/hands-on/partials/sign-up" %>
+[env]
+  ALLY_CODES_URL="http://rotbot.eu/sniper/ac-<random-number>-fleet.json"
+  ARENA_TYPE="FLEET"
+  DISCORD_WEB_HOOK=https://discord.com/api/webhooks/959848571602079804/31okpA4pf30oqz6HEZMsTPbWsCkL6fgWIkL1dO7zDmrYSg4Z8vfsFrGLQcz2xNGtS2b0
 
-[Next: Sign in to Fly.io](/docs/hands-on/sign-in/)
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  processes = ["app"]
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
